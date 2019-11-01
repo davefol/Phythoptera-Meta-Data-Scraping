@@ -64,7 +64,7 @@ clean:
 all_objects : $(objects)
 
 all_links:
-	curl -s https://idtools.org/id/phytophthora/factsheet_index.php | $(extract_links) | xargs -I '{}' bash -c 'echo {} > $(links)$$(echo {} | egrep -o "[0-9]+").hyperlink'
+	curl -s https://idtools.org/id/phytophthora/factsheet_index.php | $(extract_links) | xargs -I '{}' bash -c 'echo {} > $(links)\$$(echo {} | egrep -o "[0-9]+").hyperlink'
 
 
 $(data_rows)/%.pdv : $(names)/%.txt $(hosts)/%.txt $(substrates)/%.txt $(sexual_features)/%.txt $(references)/%.txt $(links)/%.hyperlink | $(data_rows)
@@ -89,7 +89,7 @@ $(html)/%.html : $(links)/%.hyperlink | $(html)
 	cat $< | xargs curl -s > $@
 	
 $(links)/%.hyperlink : $(extract_links) | $(links)
-	curl -s https://idtools.org/id/phytophthora/factsheet_index.php | $(extract_links) | xargs -I '{}' bash -c 'echo {} > $(links)$$(echo {} | egrep -o "[0-9]+").hyperlink'
+	curl -s https://idtools.org/id/phytophthora/factsheet_index.php | $(extract_links) | xargs -I '{}' bash -c 'echo {} > $(links)\$$(echo {} | egrep -o "[0-9]+").hyperlink'
 
 $(links) : | $(data)
 	mkdir $(links)
