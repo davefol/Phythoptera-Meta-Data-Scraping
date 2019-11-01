@@ -1,3 +1,8 @@
+---
+author: David Folarin
+date: 10/31/2019
+---
+
 # Quick Start
 1. `make all_links`
 2. `make`
